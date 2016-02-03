@@ -1,0 +1,29 @@
+{
+    "name": "imos/invoice",
+    "description": "A library for creating invoices",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Owen Kieffer-Jones",
+            "email": "okj@imos.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Imos\\Invoice\\": "src/"
+        },
+        "files": ["bcmath.php"]
+    },
+    "require": {
+        "php": "^5.5 || ^7.0"
+    },
+    "require-dev": {
+        "mpdf/mpdf": "^6.0.0",
+        "phpunit/phpunit": "^4.8"
+    },
+    "suggests": {
+        "ext-bcmath": "!!TODO!!",
+        "mpdf/mpdf": "Generate invoice PDFs using mPDF"
+    }
+}
