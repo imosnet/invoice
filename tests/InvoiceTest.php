@@ -54,7 +54,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($invoice === $invoice->clearTaxIds());
         $this->assertTrue($invoice === $invoice->addTaxId('Ust-ID', 'DE999999999'));
-        $this->assertTrue($invoice === $invoice->addTaxId('Steuernummer', '1234 / 56789'));
+        $this->assertTrue($invoice === $invoice->addTaxId('Steuernummer', '12345 / 67890'));
         $this->assertEquals(array(
             array(
                 'label' => 'Ust-ID',

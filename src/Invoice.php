@@ -94,7 +94,7 @@ class Invoice {
      *
      * @example setCurrency('EUR')
      * @example setCurrency('€', 2)
-     * @example setCurrency('US')
+     * @example setCurrency('US$')
      * @example setCurrency('Yen', 0)
      *
      * @return $this
