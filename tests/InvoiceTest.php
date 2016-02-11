@@ -95,6 +95,8 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
     public function testTotalsNet()
     {
+        bcscale(10);
+
         $invoice = (new Invoice)
             ->setPriceType(Invoice::PRICE_NET)
             ->addLineItem(
@@ -145,6 +147,8 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
     public function testTotalsGross()
     {
+        bcscale(10);
+
         $invoice = (new Invoice)
             ->setPriceType(Invoice::PRICE_GROSS)
             ->addLineItem(
@@ -195,6 +199,8 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRound()
     {
+        bcscale(10);
+
         $invoice = new Invoice;
 
         $invoice->setCurrency('EUR', 2);

@@ -466,9 +466,6 @@ class Invoice {
      */
     public function round($number)
     {
-        return round($number, $this->precision); // TODO
-
-
         if (strpos($number, '.') !== false) {
             if ($number[0] != '-') return bcadd($number, '0.' . str_repeat('0', $this->precision) . '5', $this->precision);
             return bcsub($number, '0.' . str_repeat('0', $this->precision) . '5', $this->precision);

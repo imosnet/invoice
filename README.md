@@ -3,6 +3,24 @@ Invoice
 
 imos Invoice is a library for creating and generating invoices.
 
+Setup
+-----
+
+This library relies on BCMath to do reliable calculations. Make sure [bcmath.scale] is set
+sufficiently high (it should at least be higher than the number of decimal places you will
+round to).
+
+```php
+ini_set('bcmath.scale', 10);
+bcscale(10);
+```
+
+Install [Twig] and/or [mPDF] to use `HtmlGenerator` or `mPdfGenerator`.
+
+[bcmath.scale]: https://php.net/bcmath.scale
+[Twig]: https://packagist.org/packages/twig/twig
+[mPDF]: https://packagist.org/packages/mpdf/mpdf
+
 Building an Invoice
 -------------------
 

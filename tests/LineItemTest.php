@@ -8,8 +8,9 @@ use Imos\Invoice\LineItem;
 
 class LineItemTest extends \PHPUnit_Framework_TestCase
 {
-    
-    function testGettersSetters() {
+
+    function testGettersSetters()
+    {
         $item = new LineItem;
 
         $this->assertTrue($item === $item->setDescription('Internet Widget'));
@@ -38,7 +39,10 @@ class LineItemTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    function testLineTotals() {
+    function testLineTotals()
+    {
+        bcscale(10);
+
         $item = (new LineItem)->setUnitPrice('25');
 
         $this->assertEquals('25', $item->getTotal());
