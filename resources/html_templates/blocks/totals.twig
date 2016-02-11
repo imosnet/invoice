@@ -1,0 +1,24 @@
+<table class="totals">
+    <tbody>
+        <tr>
+            <th>{{ string('price_net') }}:</th>
+            <td>{{ invoice.getTotal(net) | currency }}</td>
+        </tr>
+
+        {% for tax in invoice.taxes %}
+            <tr>
+                {% if tax.name %}
+                    <th>{{ tax.name }} ({{ tax.rate | percentage }}):</th>
+                {%  else %}
+                    <th>{{ tax.rate | percentage }}:</th>
+                {% endif %}
+                <td>{{ tax.total | currency }}</td>
+            </tr>
+        {% endfor %}
+
+        <tr>
+            <th>{{ string('price_gross') }}:</th>
+            <td>{{ invoice.getTotal(gross) | currency }}</td>
+        </tr>
+    </tbody>
+</table>

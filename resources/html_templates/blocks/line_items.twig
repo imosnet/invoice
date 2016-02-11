@@ -1,0 +1,34 @@
+<table class="line-items">
+    <thead>
+        <tr>
+            <th class="line-item-description text">{{ string('item_description') }}</th>
+            <th class="line-item-reference text">{{ string('item_reference') }}</th>
+            <th class="line-item-quantity numeric">{{ string('item_quantity') }}</th>
+            <th class="line-item-unit text">{{ string('item_unit') }}</th>
+            <th class="line-item-unitPrice numeric price">{{ string('item_unit_price') }}</th>
+            {% if columns.discount %}
+                <th class="line-item-discount numeric">{{ string('item_discount') }}</th>
+            {% endif %}
+            <th class="line-item-total numeric price">{{ string('item_total') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lineItem in invoice.lineItems %}
+            <tr>
+                <td class="line-item-description text">{{ lineItem.description | text | nl2br }}</td>
+                <td class="line-item-reference text">{{ lineItem.reference | text | nl2br }}</td>
+                <td class="line-item-quantity numeric">{{ lineItem.quantity | numeric }}</td>
+                <td class="line-item-unit text">{{ lineItem.unit }}</td>
+                <td class="line-item-unit-price numeric price">{{ lineItem.unitPrice | currency }}</td>
+                {% if columns.discount %}
+                    <td class="line-item-discount numeric">
+                        {% if lineItem.discount is not null %}
+                            {{ lineItem.discount | percentage }}
+                        {% endif %}
+                    </td>
+                {% endif %}
+                <td class="line-item-total numeric price">{{ lineItem.total | currency }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

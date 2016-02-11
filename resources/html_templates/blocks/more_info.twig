@@ -1,0 +1,16 @@
+<table class="more-info">
+    <tbody>
+        {% for taxId in invoice.taxIds %}
+            <tr>
+                <th>{{ taxId.label }}:</th>
+                <td>{{ taxId.value | nl2br }}</td>
+            </tr>
+        {% endfor %}
+        {% if invoice.paymentTerms != null %}
+            <tr>
+                <th>{{ string('payment_terms') }}:</th>
+                <td>{{ invoice.paymentTerms | text | nl2br }}</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>

@@ -1,0 +1,14 @@
+table.layout {
+    width: 100%;
+}
+table.layout td.left,
+table.layout td.right {
+    padding: 0 !important;
+    border: none !important;
+}
+table.layout td.left {
+    text-align: left;
+}
+table.layout td.right {
+    text-align: right;
+}

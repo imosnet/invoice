@@ -16,7 +16,8 @@
         "files": ["bcmath.php"]
     },
     "require": {
-        "php": "^5.5 || ^7.0"
+        "php": "^5.5 || ^7.0",
+        "twig/twig": "^1.24"
     },
     "require-dev": {
         "mpdf/mpdf": "^6.0.0",
@@ -24,6 +25,6 @@
     },
     "suggests": {
         "ext-bcmath": "!!TODO!!",
-        "mpdf/mpdf": "Generate invoice PDFs using mPDF"
+        "mpdf/mpdf": "Required to use the mPdfGenerator"
     }
 }

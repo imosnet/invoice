@@ -1,0 +1,5 @@
+<div class="extra-info">
+    {% for info in invoice.extraInfo %}
+        <p>{{ info | text | nl2br }}</p>
+    {% endfor %}
+</div>

@@ -1,0 +1,28 @@
+<table class="basic-info">
+    <tbody>
+        <tr>
+            <th>{{ string('customer_number') }}:</th>
+            <td>{{ invoice.customerNumber | nl2br }}</td>
+        </tr>
+        <tr>
+            <th>{{ string('invoice_number') }}:</th>
+            <td>{{ invoice.invoiceNumber | nl2br }}</td>
+        </tr>
+        <tr>
+            <th>{{ string('invoice_date') }}:</th>
+            <td>{{ invoice.invoiceDate | date }}</td>
+        </tr>
+        {% if invoice.billingPeriod %}
+            <tr>
+                <th>{{ string('billing_period') }}:</th>
+                <td>{{ invoice.billingPeriod | dateRange }}</td>
+            </tr>
+        {% endif %}
+        {% if invoice.commission %}
+            <tr>
+                <th>{{ string('commission') }}:</th>
+                <td>{{ invoice.commission | nl2br }}</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+@page {
+    margin: 2cm;
+}
+@page :first {
+    margin-top: 5.5cm;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    font-weight: normal;
+    font-size: 8pt;
+    font-style: normal;
+    color: #000000;
+}
+.customer-address {
+    font-size: 10pt;
+    height: 5cm;
+}
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+    margin-bottom: 5pt;
+}
+th, td {
+    text-align: left;
+    vertical-align: top;
+    border: 2pt solid #fff;
+}
+thead th {
+    color: #FFFFFF;
+    background: #000000;
+    padding: 2pt 4pt;
+}
+.line-items {
+    width: 100%;
+}
+.line-items td,
+.totals td,
+.totals th {
+    background: #e0e0e0;
+    padding: 2pt 4pt;
+}
+.numeric, .line-item-unit {
+    text-align: right;
+}
+.totals {
+    float: right;
+}
+.totals th,
+.totals td {
+    text-align: right;
+}
+.more-info {
+    float: left;
+    margin-bottom: 0.5cm;
+}
+.extra-info {
+    clear: both;
+    width: 15cm;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{{ invoice.invoiceNumber }}</title>
+        {% for file in stylesheets %}
+            <style>{% include file %}</style>
+        {% endfor %}
+        {% for css in css %}
+            <style>{{ css }}</style>
+        {% endfor %}
+    </head>
+    <body>
+        {% include 'blocks/customer_address.twig' %}
+        {% include 'blocks/basic_info.twig' %}
+        {% include 'blocks/line_items.twig' %}
+        <table class="layout">
+            <tr>
+                <td class="left">{% include 'blocks/more_info.twig' %}</td>
+                <td class="right">{% include 'blocks/totals.twig' %}</td>
+            </tr>
+        </table>
+        {% include 'blocks/extra_info.twig' %}
+    </body>
+</html>
