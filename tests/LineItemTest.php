@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Imos\Invoice\Tests;
-
 
 use Imos\Invoice\LineItem;
 
 class LineItemTest extends \PHPUnit_Framework_TestCase
 {
 
-    function testGettersSetters()
+    public function testGettersSetters()
     {
         $item = new LineItem;
 
@@ -39,7 +37,7 @@ class LineItemTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    function testLineTotals()
+    public function testLineTotals()
     {
         bcscale(10);
 

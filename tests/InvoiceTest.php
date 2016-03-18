@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Imos\Invoice\Tests;
-
 
 use DateTime;
 use Imos\Invoice\DateRange;

@@ -12,10 +12,11 @@ round to).
 
 ```php
 ini_set('bcmath.scale', 10);
+// OR
 bcscale(10);
 ```
 
-Install [Twig] and/or [mPDF] to use `HtmlGenerator` or `mPdfGenerator`.
+Install [Twig] and/or [mPDF] to use `HtmlGenerator` or `MpdfGenerator`.
 
 [bcmath.scale]: https://php.net/bcmath.scale
 [Twig]: https://packagist.org/packages/twig/twig
@@ -40,8 +41,8 @@ $lineItem = (new LineItem)
 $lineItemTotal = $lineItem->getTotal(); // Get the line total
 ```
 
-`Invoice` represents an invoice. It can be set to use either net prices or gross
-prices. Depending on type, it will calculate taxes either "backwards" or "forwards".
+`Invoice` represents an invoice. It can be set to use either net list prices or gross
+list prices. Depending on type, it will calculate taxes either "backwards" or "forwards".
 
 ```php
 $invoice = (new Invoice)
@@ -126,7 +127,7 @@ echo $generator->generate($invoice);
 
 The generated invoice can be customized for your locale and/or business:
 ```php
-$generator
+$formatter = (new Formatter)
     ->setDecimalSeperator('.')
     ->setThousandsSeperator(',')
     ->setDateFormat('d.m.Y')
@@ -151,6 +152,7 @@ $generator
         'price_net' => 'Netto',
         'price_gross' => 'Brutto',
     ));
+$generator->setFormatter($formatter);
 ```
 
 ### The `HtmlGenerator`
@@ -165,22 +167,23 @@ You can also write your own Twig template to use (see the current ones under
 `resources/html_templates/` for a starting point):
 
 ```php
-$generator->setHtmlTemplate(__DIR__ . '/custom.twig');
+$generator->addHtmlTemplatePath(__DIR__ . '/templates');
+$generator->setHtmlTemplate('custom.twig');
 ```
 
-### The `mPdfGenerator`
+### The `MpdfGenerator`
 
-The `mPdfGenerator` uses mPDF to generate a PDF invoice.
+The `MpdfGenerator` uses mPDF to generate a PDF invoice. In addition to the `generate()` method,
+MpdfGenerator can also return you the mPDF object directly.
 
 ```php
-$generator = new mPdfGenerator(new mPDF);
-$generator->generate($invoice)->Output();
+$generator = new MpdfGenerator(new mPDF);
+$generator->generateMpdf($invoice)->Output();
 ```
 
-All options in `HtmlGenerator` are also available to use in `mPdfGenerator`. Additionally,
-a PDF file can be set as a template for the invoice. The last page of the template is repeated
-if the invoice becomes longer that the template. A template usually consists of two pages, one
-for the first page of the invoice (possibly with a letterhead) and one for subsequent pages.
+A PDF file can be set as a template for the invoice. A template usually consists of two pages,
+one for the first page of the invoice (with a letterhead, for example) and one for subsequent
+pages. The last page of the template is repeated if the invoice becomes longer that the template.
 Page margins can be set using CSS.
 
 ```php

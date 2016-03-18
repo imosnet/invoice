@@ -1,14 +1,11 @@
 <?php
 
-
 namespace Imos\Invoice\Generator;
-
 
 use Imos\Invoice\Invoice;
 
-class HtmlGenerator extends AbstractGenerator implements Generator
+class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     protected $availableColumns = array(
         'description',
         'reference',
@@ -22,6 +19,25 @@ class HtmlGenerator extends AbstractGenerator implements Generator
     protected $htmlTemplate = 'default.twig';
     protected $stylesheets = ['default.css'];
     protected $css = array();
+
+    protected $htmlTemplatePaths = array();
+
+    protected function getHtmlTemplateDefaultPath()
+    {
+        return __DIR__ . '/../../resources/html_templates/';
+    }
+
+    /**
+     * Adds an include path to find Twig templates in
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function addHtmlTemplatePath($path)
+    {
+        $this->htmlTemplatePaths[] = $path;
+        return $this;
+    }
 
     /**
      * Sets a twig template for generating the invoice
@@ -91,6 +107,7 @@ class HtmlGenerator extends AbstractGenerator implements Generator
 
         return $template->render(array(
             'stylesheets' => $this->stylesheets,
+            'css' => $this->css,
             'invoice' => $invoice,
             'columns' => $this->getColumns($invoice),
             'net' => Invoice::PRICE_NET,
@@ -104,29 +121,33 @@ class HtmlGenerator extends AbstractGenerator implements Generator
      */
     protected function createTwigEnvironment(Invoice $invoice)
     {
-        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../../resources/html_templates/');
+        $paths = array_merge(
+            $this->htmlTemplatePaths,
+            array($this->getHtmlTemplateDefaultPath())
+        );
+        $loader = new \Twig_Loader_Filesystem($paths);
         $twig = new \Twig_Environment($loader);
 
         $twig->addFilter(new \Twig_SimpleFilter('currency', function ($value) use ($invoice) {
-            return $this->formatCurrency($value, $invoice);
+            return $this->getFormatter()->formatCurrency($value, $invoice);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('numeric', function ($value) {
-            return $this->formatNumber($value);
+            return $this->getFormatter()->formatNumber($value);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('percentage', function ($value) {
-            return $this->formatPercentage($value);
+            return $this->getFormatter()->formatPercentage($value);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('date', function ($value) {
-            return $this->formatDate($value);
+            return $this->getFormatter()->formatDate($value);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('dateRange', function ($value) {
-            return $this->formatDateRange($value);
+            return $this->getFormatter()->formatDateRange($value);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('text', function ($value) use ($invoice) {
-            return $this->formatText($value, $invoice);
+            return $this->getFormatter()->formatText($value, $invoice);
         }));
-        $twig->addFunction(new \Twig_SimpleFunction('string', function($handle){
-            return $this->strings[$handle];
+        $twig->addFunction(new \Twig_SimpleFunction('string', function ($handle) {
+            return $this->getFormatter()->getString($handle);
         }));
 
         return $twig;
@@ -151,5 +172,4 @@ class HtmlGenerator extends AbstractGenerator implements Generator
 
         return $columns;
     }
-
 }

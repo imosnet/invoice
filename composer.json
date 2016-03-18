@@ -21,10 +21,11 @@
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "mpdf/mpdf": "^6.0.0",
-        "twig/twig": "^1.24"
+        "twig/twig": "^1.24",
+        "squizlabs/php_codesniffer": "^2.5"
     },
     "suggests": {
-        "twig/twig": "Required for HtmlGenerator and mPdfGenerator",
-        "mpdf/mpdf": "Required for mPdfGenerator"
+        "twig/twig": "Required for HtmlGenerator and MpdfGenerator",
+        "mpdf/mpdf": "Required for MpdfGenerator"
     }
 }

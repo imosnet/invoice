@@ -5,12 +5,15 @@ namespace Imos\Invoice;
 use DateTime;
 use Imos\Invoice\Exception\InvalidPriceTypeException;
 
-class Invoice {
+class Invoice
+{
 
     const PRICE_NET = 1;
     const PRICE_GROSS = 2;
 
+    /** @var int $precision Precision to use for monetary calculations */
     protected $precision = 2;
+    /** @var int $type List price type - self::PRICE_NET or self::PRICE_GROSS*/
     protected $type = self::PRICE_NET;
 
     /** @var string */
@@ -40,6 +43,7 @@ class Invoice {
 
     /** @var LineItem[] */
     protected $lineItems = array();
+
 
     /****************************************************
      * Basic settings
@@ -346,6 +350,7 @@ class Invoice {
         return $this;
     }
 
+
     /****************************************************
      * Calculations
      ****************************************************/
@@ -367,12 +372,16 @@ class Invoice {
     {
         $taxes = array();
         foreach ($this->lineItems as $lineItem) {
-            // Create tax
+            // Create tax record
             $newTax = array(
                 'name' => $lineItem->getTaxName(),
                 'rate' => $lineItem->getTaxRate(),
                 'total' => $this->round($lineItem->getTotal()),
             );
+
+            if (is_null($newTax['rate']) && is_null($newTax['name'])) {
+                continue;
+            }
 
             // Merge array
             $found = false;
@@ -398,7 +407,15 @@ class Invoice {
         return $taxes;
     }
 
-    protected function calculateTax($total, $rate) {
+    /**
+     * Calculate tax
+     *
+     * @param int|float|string $total
+     * @param int|float|string $rate Percentage (e.g. 19 for 19%)
+     * @return int|string
+     */
+    protected function calculateTax($total, $rate)
+    {
         if ($this->type === self::PRICE_NET) {
             $multiplier = bcdiv($rate, 100);
         } else {
@@ -424,11 +441,11 @@ class Invoice {
      */
     protected function getLineItemSum()
     {
-            $sum = 0;
-            foreach ($this->lineItems as $lineItem) {
-                $sum = bcadd($sum, $lineItem->getTotal());
-            }
-            return $this->round($sum);
+        $sum = 0;
+        foreach ($this->lineItems as $lineItem) {
+            $sum = bcadd($sum, $lineItem->getTotal());
+        }
+        return $this->round($sum);
     }
 
     /**
@@ -467,10 +484,11 @@ class Invoice {
     public function round($number)
     {
         if (strpos($number, '.') !== false) {
-            if ($number[0] != '-') return bcadd($number, '0.' . str_repeat('0', $this->precision) . '5', $this->precision);
+            if ($number[0] != '-') {
+                return bcadd($number, '0.' . str_repeat('0', $this->precision) . '5', $this->precision);
+            }
             return bcsub($number, '0.' . str_repeat('0', $this->precision) . '5', $this->precision);
         }
         return $number;
     }
-
 }

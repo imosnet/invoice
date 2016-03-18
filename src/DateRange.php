@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Imos\Invoice;
-
 
 use DateInterval;
 use DateTime;
