@@ -1,5 +1,8 @@
 Invoice
 =======
+[![Packagist](https://img.shields.io/packagist/v/imos/invoice.svg)](https://packagist.org/packages/imos/invoice)
+[![Travis](https://img.shields.io/travis/imosnet/invoice.svg)](https://travis-ci.org/imosnet/invoice)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/imosnet/invoice/master/LICENSE)
 
 imos Invoice is a library for creating and generating invoices.
 
