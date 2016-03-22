@@ -8,7 +8,10 @@ use Exception;
 
 class DateRange
 {
+    /** @var DateTime */
     protected $start;
+
+    /** @var DateTime */
     protected $end;
 
     /**

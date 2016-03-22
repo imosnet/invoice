@@ -4,15 +4,25 @@ namespace Imos\Invoice;
 
 class Formatter
 {
-    protected $maxPrecision = 50;
+    /** @var string */
     protected $decimalSeperator = '.';
+
+    /** @var string */
     protected $thousandsSeperator = ',';
 
+    /** @var string */
     protected $dateFormat = 'Y-m-d';
+
+    /** @var string */
     protected $dateRangeFormat = '%s – %s'; // &thinsp;&ndash;&thinsp;
+
+    /** @var string */
     protected $percentageFormat = '%s%%';
+
+    /** @var string */
     protected $currencyFormat = '%s %s'; // &#8239; narrow no-break space
 
+    /** @var string[] Associative array of strings */
     protected $strings = array(
         'customer_number' => 'Customer no.',
         'invoice_number' => 'Invoice no.',
@@ -33,18 +43,6 @@ class Formatter
         'price_net' => 'Net total',
         'price_gross' => 'Gross total',
     );
-
-    /**
-     * Set maximum precision for formatted numbers with automatic precision
-     *
-     * @param int $maxPrecision
-     * @return $this
-     */
-    public function setMaxPrecision($maxPrecision)
-    {
-        $this->maxPrecision = $maxPrecision;
-        return $this;
-    }
 
     /**
      * Set decimal seperator

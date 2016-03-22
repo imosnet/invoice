@@ -121,7 +121,7 @@ Generating an Invoice
 
 Generating an invoice is simple:
 ```php
-$generator = new HtmlGenerator;
+$generator = new HtmlGenerator(new Formatter);
 echo $generator->generate($invoice);
 ```
 
@@ -177,7 +177,7 @@ The `MpdfGenerator` uses mPDF to generate a PDF invoice. In addition to the `gen
 MpdfGenerator can also return you the mPDF object directly.
 
 ```php
-$generator = new MpdfGenerator(new mPDF);
+$generator = new MpdfGenerator(new Formatter, new mPDF);
 $generator->generateMpdf($invoice)->Output();
 ```
 

@@ -11,25 +11,33 @@ class Invoice
     const PRICE_NET = 1;
     const PRICE_GROSS = 2;
 
-    /** @var int $precision Precision to use for monetary calculations */
+    /** @var int Precision to use for monetary calculations */
     protected $precision = 2;
-    /** @var int $type List price type - self::PRICE_NET or self::PRICE_GROSS*/
+    
+    /** @var int List price type - self::PRICE_NET or self::PRICE_GROSS*/
     protected $type = self::PRICE_NET;
 
     /** @var string */
     protected $currency;
+    
     /** @var string[] */
     protected $customerAddress;
+    
     /** @var string */
     protected $customerNumber;
+    
     /** @var string */
     protected $invoiceNumber;
+    
     /** @var DateTime */
     protected $invoiceDate;
+    
     /** @var DateTime */
     protected $dueDate;
+    
     /** @var DateRange */
     protected $billingPeriod;
+
     /** @var string */
     protected $commission;
 
@@ -38,6 +46,7 @@ class Invoice
 
     /** @var string */
     protected $paymentTerms;
+
     /** @var string[] */
     protected $extraInfo = array();
 

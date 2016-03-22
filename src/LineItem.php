@@ -12,18 +12,25 @@ class LineItem
 
     /** @var string Description of line item */
     protected $description;
+
     /** @var string Reference */
     protected $reference;
+
     /** @var int Quantity */
     protected $quantity;
+
     /** @var string Unit name */
     protected $unit;
+
     /** @var int|float|string Unit price */
     protected $unitPrice;
+
     /** @var int|float|string Tax rate in percent */
     protected $taxRate;
+
     /** @var string Name of tax */
     protected $taxName;
+
     /** @var int|float|string Discount in percent */
     protected $discount;
 

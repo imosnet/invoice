@@ -2,6 +2,7 @@
 
 namespace Imos\Invoice\Generator;
 
+use Imos\Invoice\Formatter;
 use Imos\Invoice\Invoice;
 
 class MpdfGenerator extends HtmlGenerator implements GeneratorInterface
@@ -9,16 +10,19 @@ class MpdfGenerator extends HtmlGenerator implements GeneratorInterface
     /** @var \mPDF Eine mPDF-Instanz */
     protected $mpdf;
 
+    /** @inheritdoc */
     protected $htmlTemplate = 'mpdf.twig';
+
+    /** @inheritdoc */
     protected $stylesheets = ['default.css', 'mpdf.css'];
 
-    protected $pdfTemplate;
-
     /**
+     * @param Formatter $formatter
      * @param \mPDF $mpdf
      */
-    public function __construct(\mPDF $mpdf)
+    public function __construct(Formatter $formatter, \mPDF $mpdf)
     {
+        parent::__construct($formatter);
         $this->mpdf = $mpdf;
     }
 

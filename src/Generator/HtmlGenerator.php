@@ -6,6 +6,7 @@ use Imos\Invoice\Invoice;
 
 class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
 {
+    /** @var string[] Columns available on the invoice */
     protected $availableColumns = array(
         'description',
         'reference',
@@ -16,10 +17,16 @@ class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
         'total',
     );
 
+    /** @var string Filename of a Twig template */
     protected $htmlTemplate = 'default.twig';
+
+    /** @var string[] Filenames of stylesheets to use */
     protected $stylesheets = ['default.css'];
+
+    /** @var string[] CSS snippets to inject */
     protected $css = array();
 
+    /** @var string[] File paths to include Twig templates from */
     protected $htmlTemplatePaths = array();
 
     protected function getHtmlTemplateDefaultPath()
@@ -87,7 +94,7 @@ class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
     /**
      * Add CSS
      *
-     * @param string $css
+     * @param string $css CSS snippet to inject
      * @return $this
      */
     public function addCss($css)

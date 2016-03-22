@@ -6,19 +6,22 @@ use Imos\Invoice\Formatter;
 
 abstract class AbstractGenerator
 {
-    /**
-     * @var Formatter
-     */
+    /** @var Formatter */
     private $formatter;
+
+    /**
+     * @param Formatter $formatter
+     */
+    public function __construct(Formatter $formatter)
+    {
+        $this->setFormatter($formatter);
+    }
 
     /**
      * @return Formatter
      */
-    protected function getFormatter()
+    public function getFormatter()
     {
-        if (is_null($this->formatter)) {
-            $this->formatter = new Formatter;
-        }
         return $this->formatter;
     }
 
