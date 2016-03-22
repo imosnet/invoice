@@ -24,7 +24,7 @@
         "twig/twig": "^1.24",
         "squizlabs/php_codesniffer": "^2.5"
     },
-    "suggests": {
+    "suggest": {
         "twig/twig": "Required for HtmlGenerator and MpdfGenerator",
         "mpdf/mpdf": "Required for MpdfGenerator"
     }
