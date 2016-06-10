@@ -75,10 +75,16 @@ class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
      * @param string $stylesheet
      * @return $this
      */
-    public function addSytlesheet($stylesheet)
+    public function addStylesheet($stylesheet)
     {
         $this->stylesheets[] = $stylesheet;
         return $this;
+    }
+
+    /** @deprecated Alias for addStylesheet() */
+    public function addSytlesheet($stylesheet)
+    {
+        return $this->addStylesheet($stylesheet);
     }
 
     /**
