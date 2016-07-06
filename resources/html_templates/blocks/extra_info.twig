@@ -1,5 +1,5 @@
 <div class="extra-info">
-    {% for info in invoice.extraInfo %}
-        <p>{{ info | text | nl2br }}</p>
+    {% for extraInfo in invoice.extraInfo %}
+        {% include 'fields/extra_info.twig' %}
     {% endfor %}
 </div>

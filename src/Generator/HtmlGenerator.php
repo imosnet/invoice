@@ -144,8 +144,8 @@ class HtmlGenerator extends AbstractGenerator implements GeneratorInterface
         $twig->addFilter(new \Twig_SimpleFilter('currency', function ($value) use ($invoice) {
             return $this->getFormatter()->formatCurrency($value, $invoice);
         }));
-        $twig->addFilter(new \Twig_SimpleFilter('numeric', function ($value) {
-            return $this->getFormatter()->formatNumber($value);
+        $twig->addFilter(new \Twig_SimpleFilter('numeric', function ($value, $precision = null) {
+            return $this->getFormatter()->formatNumber($value, $precision);
         }));
         $twig->addFilter(new \Twig_SimpleFilter('percentage', function ($value) {
             return $this->getFormatter()->formatPercentage($value);

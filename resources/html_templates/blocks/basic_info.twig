@@ -3,31 +3,31 @@
         {% if invoice.customerNumber %}
             <tr>
                 <th>{{ string('customer_number') }}:</th>
-                <td>{{ invoice.customerNumber | nl2br }}</td>
+                <td>{% include 'fields/customer_number.twig' %}</td>
             </tr>
         {% endif %}
         {% if invoice.invoiceNumber %}
             <tr>
                 <th>{{ string('invoice_number') }}:</th>
-                <td>{{ invoice.invoiceNumber | nl2br }}</td>
+                <td>{% include 'fields/invoice_number.twig' %}</td>
             </tr>
         {% endif %}
         {% if invoice.invoiceDate %}
             <tr>
                 <th>{{ string('invoice_date') }}:</th>
-                <td>{{ invoice.invoiceDate | date }}</td>
+                <td>{% include 'fields/invoice_date.twig' %}</td>
             </tr>
         {% endif %}
         {% if invoice.billingPeriod %}
             <tr>
                 <th>{{ string('billing_period') }}:</th>
-                <td>{{ invoice.billingPeriod | dateRange }}</td>
+                <td>{% include 'fields/billing_period.twig' %}</td>
             </tr>
         {% endif %}
         {% if invoice.commission %}
             <tr>
                 <th>{{ string('commission') }}:</th>
-                <td>{{ invoice.commission | nl2br }}</td>
+                <td>{% include 'fields/commission.twig' %}</td>
             </tr>
         {% endif %}
     </tbody>
