@@ -26,26 +26,24 @@
         {% for lineItem in invoice.lineItems %}
             <tr>
                 {% if columns.description %}
-                    <td class="line-item-description text">{{ lineItem.description | text | nl2br }}</td>
+                    <td class="line-item-description text">{% include 'fields/description.twig' %}</td>
                 {% endif %}
                 {% if columns.reference %}
-                    <td class="line-item-reference text">{{ lineItem.reference | text | nl2br }}</td>
+                    <td class="line-item-reference text">{% include 'fields/reference.twig' %}</td>
                 {% endif %}
                 {% if columns.quantity %}
-                    <td class="line-item-quantity numeric">{{ lineItem.quantity | numeric }}</td>
+                    <td class="line-item-quantity numeric">{% include 'fields/quantity.twig' %}</td>
                 {% endif %}
                 {% if columns.unit %}
-                    <td class="line-item-unit text">{{ lineItem.unit }}</td>
+                    <td class="line-item-unit text">{% include 'fields/unit.twig' %}</td>
                 {% endif %}
                 {% if columns.quantity or columns.discount %}
-                    <td class="line-item-unit-price numeric price">{{ lineItem.unitPrice | currency }}</td>
+                    <td class="line-item-unit-price numeric price">{% include 'fields/unit_price.twig' %}</td>
                 {% endif %}
                 {% if columns.discount %}
-                    <td class="line-item-discount numeric">
-                        {{ lineItem.discount | percentage }}
-                    </td>
+                    <td class="line-item-discount numeric">{% include 'fields/discount.twig' %}</td>
                 {% endif %}
-                <td class="line-item-total numeric price">{{ lineItem.total | currency }}</td>
+                <td class="line-item-total numeric price">{% include 'fields/line_total.twig' %}</td>
             </tr>
         {% endfor %}
     </tbody>

@@ -9,7 +9,7 @@
         {% if invoice.paymentTerms != null %}
             <tr>
                 <th>{{ string('payment_terms') }}:</th>
-                <td>{{ invoice.paymentTerms | text | nl2br }}</td>
+                <td>{%  include 'fields/payment_terms.twig' %}</td>
             </tr>
         {% endif %}
     </tbody>
