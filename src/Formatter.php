@@ -226,6 +226,12 @@ class Formatter
                     return $this->formatCurrency($invoice->getTotal(Invoice::PRICE_GROSS), $invoice);
                 case 'taxTotal':
                     return $this->formatCurrency($invoice->getTaxTotal(), $invoice);
+                case 'totalNetAbs':
+                    return $this->formatCurrency(abs($invoice->getTotal(Invoice::PRICE_NET)), $invoice);
+                case 'totalGrossAbs':
+                    return $this->formatCurrency(abs($invoice->getTotal(Invoice::PRICE_GROSS)), $invoice);
+                case 'taxTotalAbs':
+                    return $this->formatCurrency(abs($invoice->getTaxTotal()), $invoice);
                 case 'customerNumber':
                     return $invoice->getCustomerNumber();
                 case 'invoiceNumber':

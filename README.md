@@ -102,9 +102,12 @@ $taxes = $invoice->getTaxes();
 Text fields support the following placeholders, which are replaced with the
 corresponding values from the invoice:
 
-- `{{totalNet}}`
-- `{{totalGross}}`
-- `{{taxTotal}}`
+- `{{totalNet}}` - Net total
+- `{{totalGross}}` - Gross total
+- `{{taxTotal}}` - Total tax
+- `{{totalNetAbs}}` Net total (absolute value)
+- `{{totalGrossAbs}}` Gross total (absolute value)
+- `{{taxTotalAbs}}` Total tax (absolute value)
 - `{{customerNumber}}`
 - `{{invoiceNumber}}`
 - `{{invoiceDate}}`
