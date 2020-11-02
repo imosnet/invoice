@@ -88,7 +88,6 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $result);
         $this->assertTrue($item1 === $result[0]);
         $this->assertTrue($item2 === $result[1]);
-
     }
 
     public function testTotalsNet()
@@ -139,8 +138,6 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('287.47', $invoice->getTaxTotal());
         $this->assertEquals('1800.47', $invoice->getTotal(Invoice::PRICE_GROSS));
-
-
     }
 
     public function testTotalsGross()
@@ -191,8 +188,6 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('287.47', $invoice->getTaxTotal());
         $this->assertEquals('1800.47', $invoice->getTotal(Invoice::PRICE_GROSS));
-
-
     }
 
     public function testRound()
@@ -212,6 +207,5 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('125', $invoice->round('125.4'));
         $this->assertEquals('126', $invoice->round('125.5'));
         $this->assertEquals('126', $invoice->round('125.6'));
-
     }
 }

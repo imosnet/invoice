@@ -34,7 +34,6 @@ class LineItemTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($item === $item->setUnitPrice(127.29));
         $this->assertEquals(127.29, $item->getUnitPrice());
-
     }
 
     public function testLineTotals()
@@ -53,6 +52,5 @@ class LineItemTest extends \PHPUnit_Framework_TestCase
 
         $item->setDiscount(25);
         $this->assertEquals('37.5', $item->getTotal());
-
     }
 }
